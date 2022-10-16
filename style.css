@@ -30,3 +30,15 @@ body {
     background-color: #AAA;
     border-radius: 1vmin;
 }
+
+/*optional*/
+#ball {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    cursor: move;
+    
+}
+.hide {
+    display: none;
+}
