@@ -31,14 +31,16 @@ body {
     border-radius: 1vmin;
 }
 
+.cellShowMove {
+    background-color: red;
+    border-radius: 2vmin;
+}
+
 /*optional*/
-#ball {
+.ball {
     cursor: pointer;
     width: 40px;
     height: 40px;
     cursor: move;
-    
 }
-.hide {
-    display: none;
-}
+
