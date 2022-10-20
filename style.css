@@ -24,6 +24,7 @@ body {
     gap: 8vmin;
     border-radius: 1vmin;
     padding: 1vmin;
+    border: 2px solid rgb(9, 243, 33);
 }
 
 .cell {
