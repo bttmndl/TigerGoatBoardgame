@@ -37,10 +37,9 @@ function showMove(e) {
     let curCord = e.target.id.split("-"); // fetching the cordinates which user clicked
     let cr = parseInt(curCord[0]);
     let cc = parseInt(curCord[1]);
-    if(gamCordinateState[cr][cc] && goat) insertGoat(cr, cc);
+    if(gamCordinateState[cr][cc] && goat) insertGoat(cr, cc); // function insert new goat on board
     else if(showM) showPossibleMove(cr, cc); // function to show all the possible move for current tile
     else doMove(cr,cc);
-    
 }
 
 function insertGoat(cr, cc){
@@ -83,20 +82,14 @@ function showPossibleMove(cr, cc){
             let ID = (cr+2).toString() + "-" + cc.toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr][cc+2]){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
         if(gamCordinateState[cr+2][cc+2]){
             let ID = (cr+2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
-        }
-        //show move
-        for(let i=0; i<IDS.length; i++){
-            document.getElementById(IDS[i]).style.background = 'red';
-        }
-        curPossibleMove = [...IDS];
-        
+        } 
     }
     //1
     if(cr==0 && cc==1){
@@ -122,11 +115,6 @@ function showPossibleMove(cr, cc){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        //show move
-        for(let i=0; i<IDS.length; i++){
-            document.getElementById(IDS[i]).style.background = 'red';
-        }
-        curPossibleMove = [...IDS];
     }
     //2
     if(cr==0 && cc==2){
@@ -172,11 +160,6 @@ function showPossibleMove(cr, cc){
             let ID = (cr+2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        //show move
-        for(let i=0; i<IDS.length; i++){
-            document.getElementById(IDS[i]).style.background = 'red';
-        }
-        curPossibleMove = [...IDS];
     }
     //3
     if(cr==0 && cc==3){
@@ -202,96 +185,840 @@ function showPossibleMove(cr, cc){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        //show move
-        for(let i=0; i<IDS.length; i++){
-            document.getElementById(IDS[i]).style.background = 'red';
-        }
-        curPossibleMove = [...IDS];
     }
     //4
     if(cr==0 && cc==4){
-        
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc-2]){
+            let ID = (cr+2).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
     }
-
+    //5
     if(cr==1 && cc==0){
-
+        //blank state
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + cc.toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = (cr).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //6
     if(cr==1 && cc==1){
-        
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc+1]){
+            let ID = (cr+1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //7
     if(cr==1 && cc==2){
-
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc+1]){
+            let ID = (cr+1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //8
     if(cr==1 && cc==3){
-        
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc+1]){
+            let ID = (cr+1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc-2]){
+            let ID = (cr+2).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
     }
-
+    //9
     if(cr==1 && cc==4){
-        
+        //blank state
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + cc.toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //10
     if(cr==2 && cc==0){
-
+        //blank state
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + cc.toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = (cr).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc+1]){
+            let ID = (cr+1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc+2]){
+            let ID = (cr-2).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc+2]){
+            let ID = (cr+2).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
     }
-
+    //11
     if(cr==2 && cc==1){
-        
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc+1]){
+            let ID = (cr+1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //12
     if(cr==2 && cc==2){
-
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc+1]){
+            let ID = (cr+1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc-2]){
+            let ID = (cr+2).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc+2]){
+            let ID = (cr+2).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc-2]){
+            let ID = (cr-2).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc+2]){
+            let ID = (cr-2).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
     }
-
+    //13
     if(cr==2 && cc==3){
-        
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc+1]){
+            let ID = (cr+1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr+2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
     }
-    
+    //14
     if(cr==2 && cc==4){
-        
+        //blank state
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + cc.toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc-2]){
+            let ID = (cr-2).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+2][cc-2]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //15
     if(cr==3 && cc==0){
-
+        //blank state
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + cc.toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = (cr).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //16
     if(cr==3 && cc==1){
-        
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc+1]){
+            let ID = (cr+1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //17
     if(cr==3 && cc==2){
-
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc+1]){
+            let ID = (cr+1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //18
     if(cr==3 && cc==3){
-        
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc+1]){
+            let ID = (cr+1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr+1][cc-1]){
+            let ID = (cr+1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc-2]){
+            let ID = (cr-2).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
     }
-    
+    //19
     if(cr==3 && cc==4){
-        
+        //blank state
+        if(gamCordinateState[cr+1][cc]){
+            let ID = (cr+1).toString() + "-" + cc.toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //20
     if(cr==4 && cc==0){
-
+        //blank state
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + cc.toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + cc.toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc+2]){
+            let ID = (cr-2).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
     }
-
+    //21
     if(cr==4 && cc==1){
-        
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc+2]){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-
+    //22
     if(cr==4 && cc==2){
-
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc+1]){
+            let ID = (cr-1).toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+2]){
+            let ID = cr.toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc-2]){
+            let ID = (cr-2).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc+2]){
+            let ID = (cr-2).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
     }
-
+    //23
     if(cr==4 && cc==3){
-        
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+1]){
+            let ID = cr.toString() + "-" + (cc+1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr+2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
     }
-    
+    //24
     if(cr==4 && cc==4){
-        
+        //blank state
+        if(gamCordinateState[cr][cc-1]){
+            let ID = (cr).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc]){
+            let ID = (cr-1).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-1][cc-1]){
+            let ID = (cr-1).toString() + "-" + (cc-1).toString();
+            IDS.push(ID);
+        }
+        //eat state
+        if(gamCordinateState[cr][cc-2]){
+            let ID = (cr).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc]){
+            let ID = (cr-2).toString() + "-" + (cc).toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr-2][cc-2]){
+            let ID = (cr-2).toString() + "-" + (cc-2).toString();
+            IDS.push(ID);
+        }
     }
+
+    //show move
+    for(let i=0; i<IDS.length; i++){
+        document.getElementById(IDS[i]).style.background = 'red';
+    }
+    curPossibleMove = [...IDS];
+    curPossibleMove.push(cr.toString()+"-"+cc.toString());
+
     // all traking
     showM = false;
     goat = false;
