@@ -4,6 +4,7 @@
 }
 
 body {
+    
     background-color: #333;
     display: flex;
     justify-content: center;
@@ -14,6 +15,7 @@ body {
 }
 
 #game-board {
+    background-image: url("board.jpg");
     --grid-size : 5;
     --cell-size: 8vmin;
     --cell-gap: 8;
@@ -30,6 +32,7 @@ body {
 .cell {
     background-color: #AAA;
     border-radius: 1vmin;
+    cursor: pointer;
 }
 
 .cellShowMove {
@@ -44,4 +47,79 @@ body {
     height: 40px;
     cursor: move;
 }
+
+
+
+
+
+/*..........*/
+:root {
+    --angle: 45deg;
+    --opacity: 0.5;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  .rainbow {
+    border-radius: 10px;
+  
+    font-size: 1.5em;
+  
+    --border-size: 0.3rem;
+    border: var(--border-size) solid transparent;
+  
+    /* Paint an image in the border */
+    border-image: conic-gradient(
+        from var(--angle),
+        #d53e33 0deg 90deg,
+        #fbb300 90deg 180deg,
+        #377af5 180deg 270deg,
+        #399953 270deg 360deg
+      )
+      1 stretch;
+    background: rgb(255 255 255 / var(--opacity));
+  }
+
+  @supports (background: paint(houdini)) {
+    @property --opacity {
+      syntax: "<number>";
+      initial-value: 0.5;
+      inherits: false;
+    }
+  
+    @property --angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+  
+    @keyframes opacityChange {
+      to {
+        --opacity: 1;
+      }
+    }
+  
+    @keyframes rotate {
+      to {
+        --angle: 360deg;
+      }
+    }
+  
+    .rainbow {
+      animation: rotate 4s linear infinite, opacityChange 3s infinite alternate;
+    }
+  
+    /* Hide the warning */
+    .warning {
+      display: none;
+    }
+  }
+  
+  
+  
+
 

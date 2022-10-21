@@ -1,9 +1,6 @@
 const gameboard = document.querySelector('.game_board');
 let row = 5;
 let col = 5;
-let currTile;
-let dropTile;
-let ballIndex=0;
 let showM = true;
 let goat = true;
 let curPossibleMove = [];
@@ -50,9 +47,10 @@ function insertGoat(cr, cc){
 
 function doMove(cr, cc){
     let id = (cr).toString() + "-" + cc.toString();
-    document.getElementById(id).style.background = 'green';
+    document.getElementById(id).classList.remove("rainbow");
+    document.getElementById(id).style.background="green";
     for(let i=0; i<curPossibleMove.length; i++){
-        if(id != curPossibleMove[i]) document.getElementById(curPossibleMove[i]).style.background = '#AAA';
+        if(id != curPossibleMove[i]) document.getElementById(curPossibleMove[i]).classList.remove("rainbow");
     }
     gamCordinateState[cr][cc] = false;
     showM =true;
@@ -1014,7 +1012,7 @@ function showPossibleMove(cr, cc){
 
     //show move
     for(let i=0; i<IDS.length; i++){
-        document.getElementById(IDS[i]).style.background = 'red';
+        document.getElementById(IDS[i]).classList.add("rainbow");
     }
     curPossibleMove = [...IDS];
     curPossibleMove.push(cr.toString()+"-"+cc.toString());
