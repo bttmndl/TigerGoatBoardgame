@@ -37,10 +37,13 @@ body {
 
 .tiger {
     background-image: url("tiger.jpg");
+    border: 5px solid rgb(96, 0, 249);
 }
 
 .goat {
     background-image: url("goat.jpg");
+    border: 5px solid rgb(255, 1, 77);
+    
 }
 .cellShowMove {
     background-color: red;
