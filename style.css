@@ -35,6 +35,13 @@ body {
     cursor: pointer;
 }
 
+.tiger {
+    background-image: url("tiger.jpg");
+}
+
+.goat {
+    background-image: url("goat.jpg");
+}
 .cellShowMove {
     background-color: red;
     border-radius: 2vmin;

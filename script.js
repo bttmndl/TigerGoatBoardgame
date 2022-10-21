@@ -5,6 +5,19 @@ let showM = true;
 let goat = true;
 let curPossibleMove = [];
 let gamCordinateState = [];
+let goatOrtiger=[]; //-1-->tiger, 0-->empty, 1--goat>
+let GorT=0;
+for(let i=0; i<row; i++){
+    let column = [];
+    for(let j=0; j<col; j++){
+        column.push(0);
+    }
+    goatOrtiger.push(column);
+}
+goatOrtiger[0][0] = -1;
+goatOrtiger[0][4] = -1;
+goatOrtiger[4][0] = -1;
+goatOrtiger[4][4] = -1;
 
 for(let i=0; i<row; i++){
     let colStates = [];
@@ -19,6 +32,8 @@ gamCordinateState[4][0] = false;
 gamCordinateState[4][4] = false;
 
 
+
+
 for(let r = 0; r<row; r++){
     for(let c =0; c<col; c++){
         let tile = document.createElement('cell');
@@ -30,31 +45,56 @@ for(let r = 0; r<row; r++){
 }
 
 
+//for intial board state
+document.getElementById('0-0').classList.add("tiger");
+document.getElementById('0-4').classList.add("tiger");
+document.getElementById('4-0').classList.add("tiger");
+document.getElementById('4-4').classList.add("tiger");
+
 function showMove(e) {
     let curCord = e.target.id.split("-"); // fetching the cordinates which user clicked
     let cr = parseInt(curCord[0]);
     let cc = parseInt(curCord[1]);
     if(gamCordinateState[cr][cc] && goat) insertGoat(cr, cc); // function insert new goat on board
-    else if(showM) showPossibleMove(cr, cc); // function to show all the possible move for current tile
-    else doMove(cr,cc);
+    else if(showM) {
+        if(goatOrtiger[cr][cc] == -1){ // tiger
+            GorT = -1;
+        }else{ // goat
+            GorT = 1;
+        }
+        showPossibleMove(cr, cc);  // function to show all the possible move for current tile
+    }else doMove(cr,cc);
 }
 
 function insertGoat(cr, cc){
     let id = cr.toString() + "-" + cc.toString();
-    document.getElementById(id).style.backgroundColor = 'yellow';
+    document.getElementById(id).classList.add("goat");
     gamCordinateState[cr][cc] = false;
+    goatOrtiger[cr][cc] = 1;
 }
 
 function doMove(cr, cc){
     let id = (cr).toString() + "-" + cc.toString();
     document.getElementById(id).classList.remove("rainbow");
-    document.getElementById(id).style.background="green";
+    if(GorT ==-1){
+        document.getElementById(id).classList.add("tiger");
+        goatOrtiger[cr][cc] =-1;
+    }else if(GorT==1){
+        document.getElementById(id).classList.add("goat");
+        goatOrtiger[cr][cc] =1;
+    }
+    
     for(let i=0; i<curPossibleMove.length; i++){
         if(id != curPossibleMove[i]) document.getElementById(curPossibleMove[i]).classList.remove("rainbow");
     }
     gamCordinateState[cr][cc] = false;
     showM =true;
     goat = true;
+    if(GorT==-1){
+        document.getElementById(curPossibleMove[curPossibleMove.length-1]).classList.remove("tiger");
+    }else if(GorT==1){
+        document.getElementById(curPossibleMove[curPossibleMove.length-1]).classList.remove("goat");
+    }
     //checkWin();
 }
 
@@ -1015,167 +1055,13 @@ function showPossibleMove(cr, cc){
         document.getElementById(IDS[i]).classList.add("rainbow");
     }
     curPossibleMove = [...IDS];
-    curPossibleMove.push(cr.toString()+"-"+cc.toString());
-
+    let curId = cr.toString()+"-"+cc.toString();
+    curPossibleMove.push(curId);
+    
+    goatOrtiger[cr][cc] = 0;
     // all traking
     showM = false;
     goat = false;
     gamCordinateState[cr][cc] = true;
 }
-
-/*
-
-function possibleMove(dragId, dropIndex){
-
-    dragablecells.forEach(draggble =>{
-        //corner
-        if(dragId =='1' && (draggble.id == '2' || draggble.id == '6' || draggble.id == '7')){
-            draggble.addEventListener('dragover',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragenter',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragleave',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('drop',(e)=>{
-                e.preventDefault();
-                e.target.append(ball[dropIndex]);
-            })
-        }
-
-        if(dragId =='2' && (draggble.id == '1' || draggble.id == '3' || draggble.id == '7')){
-            draggble.addEventListener('dragover',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragenter',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragleave',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('drop',(e)=>{
-                e.preventDefault();
-                console.log("hello");
-                e.target.append(ball[dropIndex]);
-            })
-        }
-
-        if(dragId =='3' && (draggble.id == '2' || draggble.id == '4' || draggble.id == '7' || draggble.id == '8' || draggble.id == '9')){
-            draggble.addEventListener('dragover',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragenter',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragleave',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('drop',(e)=>{
-                e.preventDefault();
-                e.target.append(ball[dropIndex]);
-            })
-        }
-
-        if(dragId =='4' && (draggble.id == '5' || draggble.id == '3' || draggble.id == '7' || draggble.id == '8' || draggble.id == '9')){
-            draggble.addEventListener('dragover',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragenter',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragleave',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('drop',(e)=>{
-                e.preventDefault();
-                e.target.append(ball[dropIndex]);
-            })
-        }
-
-        if(dragId == '5' && (draggble.id == '4' || draggble.id == '10' || draggble.id == '9')){
-            draggble.addEventListener('dragover',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragenter',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragleave',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('drop',(e)=>{
-                e.preventDefault();
-                e.target.append(ball[dropIndex]);
-            })
-        }
-
-        if(dragId == '6' && (draggble.id == '1' || draggble.id == '7' || draggble.id == '11')){
-            draggble.addEventListener('dragover',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragenter',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragleave',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('drop',(e)=>{
-                e.preventDefault();
-                e.target.append(ball[dropIndex]);
-            })
-        }
-
-        if(dragId == '7' && (draggble.id == '3' || draggble.id == '7' || draggble.id == '9' || draggble.id == '13')){
-            draggble.addEventListener('dragover',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragenter',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragleave',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('drop',(e)=>{
-                e.preventDefault();
-                e.target.append(ball[dropIndex]);
-            })
-        }
-
-        if(dragId == '21' && (draggble.id == '22' || draggble.id == '16' || draggble.id == '17')){
-            draggble.addEventListener('dragover',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragenter',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragleave',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('drop',(e)=>{
-                e.preventDefault();
-                e.target.append(ball[dropIndex]);
-            })
-        }
-
-        if(dragId == '25' && (draggble.id == '24' || draggble.id == '20' || draggble.id == '19')){
-            draggble.addEventListener('dragover',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragenter',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('dragleave',(e)=>{
-                e.preventDefault();
-            })
-            draggble.addEventListener('drop',(e)=>{
-                e.preventDefault();
-                e.target.append(ball[dropIndex]);
-            })
-        }
-        
-    })
-}
-*/
-
 
