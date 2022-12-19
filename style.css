@@ -4,6 +4,9 @@
 }
 
 body {
+  height: 100vh;
+}
+.Main {
     
     background-color: #333;
     display: flex;
@@ -12,6 +15,17 @@ body {
     height: 100vh;
     margin: 0;
     font-size: 7.5vmin;
+}
+
+.brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(14, 14, 14);
+}
+
+.brand h1 {
+  color: lightgreen;
 }
 
 #game-board {
