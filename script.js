@@ -161,24 +161,28 @@ function showPossibleMove(cr, cc){
         if(gamCordinateState[cr+1][cc]){
             let ID = (cr+1).toString() + "-" + cc.toString();
             IDS.push(ID);
-        }else if(gamCordinateState[cr+2][cc]){
-            let ID = (cr+2).toString() + "-" + cc.toString();
-            IDS.push(ID);
         }
         if(gamCordinateState[cr][cc+1]){
             let ID = cr.toString() + "-" + (cc+1).toString();
-            IDS.push(ID);
-        }else if(gamCordinateState[cr][cc+2]){
-            let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
         if(gamCordinateState[cr+1][cc+1]){
             let ID = (cr+1).toString() + "-" + (cc+1).toString();
             IDS.push(ID);
-        }else if(gamCordinateState[cr+2][cc+2]){
+        }
+        //eat state
+        if(gamCordinateState[cr+2][cc+2] && goatOrtiger[cr+1][cc+1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
-        }  
+        } 
+        if (gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1) {
+            let ID = (cr + 2).toString() + "-" + cc.toString();
+            IDS.push(ID);
+        }
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
+            let ID = (cr).toString() + "-" + (cc+2).toString();
+            IDS.push(ID);
+        }
     }
     //1
     if(cr==0 && cc==1){
@@ -196,11 +200,11 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -229,23 +233,23 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = cr.toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc+2]){
+        if(gamCordinateState[cr+2][cc+2] && goatOrtiger[cr+1][cc+1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc-2]){
+        if(gamCordinateState[cr+2][cc-2] && goatOrtiger[cr+1][cc-1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc+2]){
+        if(gamCordinateState[cr+2][cc+2] && goatOrtiger[cr+1][cc+1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
@@ -266,11 +270,11 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -291,15 +295,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc-2]){
+        if(gamCordinateState[cr+2][cc-2] && goatOrtiger[cr+1][cc-1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
@@ -320,11 +324,11 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -365,15 +369,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc+2]){
+        if(gamCordinateState[cr+2][cc+2] && goatOrtiger[cr+1][cc+1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
@@ -398,15 +402,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -447,15 +451,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc-2]){
+        if(gamCordinateState[cr+2][cc-2] && goatOrtiger[cr+1][cc-1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
@@ -476,11 +480,11 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -509,23 +513,23 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc+2]){
+        if(gamCordinateState[cr-2][cc+2] && goatOrtiger[cr-1][cc+1]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc+2]){
+        if(gamCordinateState[cr+2][cc+2] && goatOrtiger[cr+1][cc+1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
@@ -566,15 +570,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -615,35 +619,35 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc-2]){
+        if(gamCordinateState[cr+2][cc-2] && goatOrtiger[cr+1][cc-1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc+2]){
+        if(gamCordinateState[cr+2][cc+2] && goatOrtiger[cr+1][cc+1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc-2]){
+        if(gamCordinateState[cr-2][cc-2] && goatOrtiger[cr-1][cc-1]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc+2]){
+        if(gamCordinateState[cr-2][cc+2] && goatOrtiger[cr-1][cc+1]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
@@ -684,15 +688,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr+2][cc]){
+        if(gamCordinateState[cr+2][cc] && goatOrtiger[cr+1][cc]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
@@ -721,23 +725,23 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc-2]){
+        if(gamCordinateState[cr-2][cc-2] && goatOrtiger[cr-1][cc-1]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr+2][cc-2]){
+        if(gamCordinateState[cr+2][cc-2] && goatOrtiger[cr+1][cc-1]==1 && GorT==-1){
             let ID = (cr+2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -758,11 +762,11 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -803,15 +807,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc+2]){
+        if(gamCordinateState[cr-2][cc+2] && goatOrtiger[cr-1][cc+1]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
@@ -836,15 +840,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -885,15 +889,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc-2]){
+        if(gamCordinateState[cr-2][cc-2] && goatOrtiger[cr-1][cc-1]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
@@ -914,11 +918,11 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -939,15 +943,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + cc.toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc+2]){
+        if(gamCordinateState[cr-2][cc+2] && goatOrtiger[cr-1][cc+1]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
@@ -968,11 +972,11 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -1001,23 +1005,23 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr][cc+2]){
+        if(gamCordinateState[cr][cc+2] && goatOrtiger[cr][cc+1]==1 && GorT==-1){
             let ID = cr.toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc-2]){
+        if(gamCordinateState[cr-2][cc-2] && goatOrtiger[cr-1][cc-1]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc+2]){
+        if(gamCordinateState[cr-2][cc+2] && goatOrtiger[cr-1][cc+1]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc+2).toString();
             IDS.push(ID);
         }
@@ -1038,11 +1042,11 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
@@ -1063,15 +1067,15 @@ function showPossibleMove(cr, cc){
             IDS.push(ID);
         }
         //eat state
-        if(gamCordinateState[cr][cc-2]){
+        if(gamCordinateState[cr][cc-2] && goatOrtiger[cr][cc-1]==1 && GorT==-1){
             let ID = (cr).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc]){
+        if(gamCordinateState[cr-2][cc] && goatOrtiger[cr-1][cc]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc).toString();
             IDS.push(ID);
         }
-        if(gamCordinateState[cr-2][cc-2]){
+        if(gamCordinateState[cr-2][cc-2] && goatOrtiger[cr-1][cc-1]==1 && GorT==-1){
             let ID = (cr-2).toString() + "-" + (cc-2).toString();
             IDS.push(ID);
         }
