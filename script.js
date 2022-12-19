@@ -7,6 +7,7 @@ let curPossibleMove = [];
 let gamCordinateState = [];
 let goatOrtiger=[]; //-1-->tiger, 0-->empty, 1--goat>
 let GorT=0;
+let eatCord = [-1,-1]; // for tracking cordiante that coming from tiger to eat goat
 
 let goatCounter = 20;
 let tigerEatenGoatcount = 0;
@@ -34,9 +35,6 @@ gamCordinateState[0][0] = false;
 gamCordinateState[0][4] = false;
 gamCordinateState[4][0] = false;
 gamCordinateState[4][4] = false;
-
-
-
 
 for(let r = 0; r<row; r++){
     for(let c =0; c<col; c++){
@@ -66,6 +64,9 @@ function showMove(e) {
     else if(showM) {
         if(goatOrtiger[cr][cc] == -1){ // tiger
             GorT = -1;
+            //cordinate form where tiger is coming from
+            eatCord[0] = cr;
+            eatCord[1] = cc;
         }else{ // goat
             GorT = 1;
         }
@@ -86,11 +87,58 @@ function doMove(cr, cc){
     if(GorT ==-1){
         document.getElementById(id).classList.add("tiger");
         goatOrtiger[cr][cc] =-1;
+
+        // if tiger move is in eat state
+        if(eatCord[0]+2==cr || eatCord[0]-2 ==cr || eatCord[1]+2==cc || eatCord[1]-2 ==cc){
+            let rem_id;
+            if(eatCord[0]+2==cr && eatCord[1]+2==cc){
+                gamCordinateState[eatCord[0]+1][eatCord[1]+1] = true;
+                goatOrtiger[eatCord[0] + 1][eatCord[1] + 1] = 0;
+                rem_id = (eatCord[0]+1).toString() + "-" + (eatCord[1]+1).toString();
+            }else if (eatCord[0] - 2 == cr && eatCord[1] - 2 == cc) {
+                gamCordinateState[eatCord[0] - 1][eatCord[1] - 1] = true;
+                goatOrtiger[eatCord[0] - 1][eatCord[1] - 1] = 0;
+                rem_id = (eatCord[0]-1).toString() + "-" + (eatCord[1]-1).toString();
+            }else if (eatCord[0] - 2 == cr && eatCord[1] + 2 == cc) {
+              gamCordinateState[eatCord[0] - 1][eatCord[1] + 1] = true;
+              goatOrtiger[eatCord[0] - 1][eatCord[1] + 1] = 0;
+              rem_id =(eatCord[0] - 1).toString() + "-" + (eatCord[1] + 1).toString();
+            } else if (eatCord[0] + 2 == cr && eatCord[1] - 2 == cc) {
+              gamCordinateState[eatCord[0] + 1][eatCord[1] - 1] = true;
+              goatOrtiger[eatCord[0] + 1][eatCord[1] - 1] = 0;
+              rem_id =(eatCord[0] + 1).toString() + "-" + (eatCord[1] - 1).toString();
+            } else if (eatCord[0] + 2 == cr) {
+              gamCordinateState[eatCord[0] + 1][cc] = true;
+              goatOrtiger[eatCord[0] + 1][cc] = 0;
+              rem_id = (eatCord[0] + 1).toString() + "-" + cc.toString();
+            } else if (eatCord[0] - 2 == cr) {
+              gamCordinateState[eatCord[0] - 1][cc] = true;
+              goatOrtiger[eatCord[0] - 1][cc] = 0;
+              rem_id = (eatCord[0] - 1).toString() + "-" + cc.toString();
+            } else if (eatCord[1] + 2 == cc) {
+              gamCordinateState[cr][eatCord[1] + 1] = true;
+              goatOrtiger[cr][eatCord[1] + 1] = 0;
+              rem_id = cr.toString() + "-" + (eatCord[1] + 1).toString();
+            } else {
+              gamCordinateState[cr][eatCord[1] - 1] = true;
+              goatOrtiger[cr][eatCord[1] - 1] = 0;
+              rem_id = cr.toString() + "-" + (eatCord[1] - 1).toString();
+            }
+            
+            eatCord[0] = -1;
+            eatCord[1] = -1;
+            document.getElementById(rem_id).classList.remove("goat");
+            tigerEatenGoatcount++;
+        }
+
+
     }else if(GorT==1){
         document.getElementById(id).classList.add("goat");
         goatOrtiger[cr][cc] =1;
     }
     
+    
+
     for(let i=0; i<curPossibleMove.length; i++){
         if(id != curPossibleMove[i]) document.getElementById(curPossibleMove[i]).classList.remove("rainbow");
     }
