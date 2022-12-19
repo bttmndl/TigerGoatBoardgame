@@ -8,7 +8,7 @@ body {
 }
 .Main {
     
-    background-color: #333;
+    background-color: rgb(41, 41, 41);
     display: flex;
     justify-content: center;
     align-items: center;
