@@ -1,4 +1,6 @@
 const gameboard = document.querySelector('.game_board');
+
+
 let row = 5;
 let col = 5;
 let showM = true;
@@ -8,6 +10,9 @@ let gamCordinateState = [];
 let goatOrtiger=[]; //-1-->tiger, 0-->empty, 1--goat>
 let GorT=0;
 let eatCord = [-1,-1]; // for tracking cordiante that coming from tiger to eat goat
+let inserGoatFlag = false; // for prevening goat to place twice
+let insertTigerFlag = false; // for preventing tiger to move twice
+
 
 let goatCounter = 20;
 let tigerEatenGoatcount = 0;
@@ -58,8 +63,10 @@ function showMove(e) {
     let cr = parseInt(curCord[0]);
     let cc = parseInt(curCord[1]);
     if(gamCordinateState[cr][cc] && goat) {
-        insertGoat(cr, cc); // function insert new goat on board
-        goatCounter--;
+        if(!inserGoatFlag) {
+            insertGoat(cr, cc); // function insert new goat on board
+            goatCounter--;
+        }
     }
     else if(showM) {
         if(goatOrtiger[cr][cc] == -1){ // tiger
@@ -79,6 +86,8 @@ function insertGoat(cr, cc){
     document.getElementById(id).classList.add("goat");
     gamCordinateState[cr][cc] = false;
     goatOrtiger[cr][cc] = 1;
+    GorT = -1;
+    inserGoatFlag = true;
 }
 
 function doMove(cr, cc){
@@ -87,7 +96,7 @@ function doMove(cr, cc){
     if(GorT ==-1){
         document.getElementById(id).classList.add("tiger");
         goatOrtiger[cr][cc] =-1;
-
+        inserGoatFlag = false;
         // if tiger move is in eat state
         if(eatCord[0]+2==cr || eatCord[0]-2 ==cr || eatCord[1]+2==cc || eatCord[1]-2 ==cc){
             let rem_id;
@@ -129,6 +138,7 @@ function doMove(cr, cc){
             eatCord[1] = -1;
             document.getElementById(rem_id).classList.remove("goat");
             tigerEatenGoatcount++;
+            insertTigerFlag = true;
         }
 
 
@@ -150,10 +160,20 @@ function doMove(cr, cc){
     }else if(GorT==1){
         document.getElementById(curPossibleMove[curPossibleMove.length-1]).classList.remove("goat");
     }
+
+    //activating all the eventlistener again
+    for (let i = 0; i < row; i++) {
+      for (let j = 0; j < col; j++) {
+        let _Id = i.toString() + "-" + j.toString(); 
+        document.getElementById(_Id).addEventListener("click", showMove);
+      }
+    }
+
     //checkWin();
 }
 
 function showPossibleMove(cr, cc){
+    
     let IDS = [];
     //0
     if(cr==0 && cc==0){
@@ -1089,6 +1109,17 @@ function showPossibleMove(cr, cc){
     let curId = cr.toString()+"-"+cc.toString();
     curPossibleMove.push(curId);
     
+    //removing all the eventlistener beside possible move to prevent user clicking wrong move 
+
+    for (let i = 0; i < row; i++) {
+      for(let j=0; j<col; j++){
+        let remId = i.toString() + "-" + j.toString();
+        if(!curPossibleMove.includes(remId)){
+            document.getElementById(remId).removeEventListener('click', showMove, false);
+        }
+      }
+    }
+
     goatOrtiger[cr][cc] = 0;
     // all traking
     showM = false;
